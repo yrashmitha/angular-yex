@@ -1,0 +1,16 @@
+<div class="form-group d-flex justify-content-center flex-column">
+
+  <form (ngSubmit)="onSubmit()" class="w-100 d-flex flex-column justify-content-center">
+    <mat-form-field appearance="outline" class="w-75  form-group mx-auto">
+      <mat-label>Enter your search key</mat-label>
+      <input matInput placeholder="Cs 201 end"  autofocus [(ngModel)]="key" [ngModelOptions]="{standalone: true}" required (keyup)="checkKey($event)">
+      <mat-error *ngIf="error">{{error}}</mat-error>
+      <button matTooltip="Search" mat-button *ngIf="key" matSuffix mat-icon-button aria-label="Clear" (click)="onSubmit()">
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <mat-hint>Cs 100 end 2020 like that!</mat-hint>
+    </mat-form-field>
+  </form>
+
+</div>

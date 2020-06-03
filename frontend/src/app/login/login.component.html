@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Log In</h2>
+
+
+<form  [formGroup]="loginForm">
+  <mat-dialog-content class="d-flex flex-column">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Enter your email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'"  (keyup)="keyup($event)" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button  mat-raised-button color="primary" mat-dialog-close class="mr-2" (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
+  <a routerLink="/signup"><button mat-flat-button color="accent" mat-dialog-close class="mr-2"> Sign Up</button></a>
+
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-stroked-button color="warn" mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
+</form>

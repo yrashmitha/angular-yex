@@ -1,0 +1,49 @@
+<div class="form-group d-flex justify-content-center flex-column sticky-top mat-elevation-z6 bg-white">
+  <form (ngSubmit)="onSubmit()" class="w-100 d-flex flex-column justify-content-center">
+    <mat-form-field appearance="fill" class="w-75 w form-group mx-auto">
+      <mat-label>Enter your search key</mat-label>
+      <input matInput placeholder="Cs 201 end" autofocus [(ngModel)]="searchKey" [ngModelOptions]="{standalone: true}" required>
+      <button matTooltip="Search" mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" type="submit">
+        <mat-icon>youtube_searched_for</mat-icon>
+      </button>
+
+      <mat-hint>Cs 100 end 2020 like that!</mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+<section class="mt-5 min-vh-100">
+  <section *ngIf="err!=null">
+    <h4 class="text-center">No results</h4>
+  </section>
+  <section *ngFor="let paper of resultsArray" class="row container-fluid pb-lg-3 pb-sm-1 pb-md-0-1 pb-xl-3 m-0">
+    <section class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2"></section>
+    <section class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+      <div class="row no-gutters bor shadow p-3 mb-5 bg-white rounded">
+        <div class="col-md-4 text-center">
+
+          <img *ngIf="paper.extension!='pdf'" [src]="staticImagePath+paper.path" class="img-thumbnail" alt="...">
+          <img *ngIf="paper.extension=='pdf'" src="/assets/images/pdf.png" class="img-thumbnail" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <a [href]="staticImagePath+paper.path" download="" class="nav-link pl-0"><h4
+              class="card-title">{{paper.title}}</h4></a>
+            <p class="card-text"></p>
+            <p class="card-text">
+              <small class="text-muted font-weight-bold">{{paper.name}}</small>
+            </p>
+            <p>
+              <small class="text-muted">{{paper.created_at}}</small>
+            </p>
+            <a [href]="staticImagePath+paper.path" target="_blank" download="myname">
+              <button mat-stroked-button color="primary">Download</button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2"></section>
+  </section>
+
+</section>

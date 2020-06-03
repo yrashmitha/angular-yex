@@ -1,0 +1,93 @@
+<section class="container min-vh-75">
+  <section class="row mb-5 mt-5">
+
+      <section class="col-12 col-lg-4 mt-5">
+        <img class="rounded-circle img-thumbnail card-img shadow p-3 mb-5 bg-white rounded" mat-card-image
+             [src]="avatar" alt="user_avatar">
+
+        <section class="btn-group d-flex justify-content-around">
+          <form (ngSubmit)="onUpload()">
+          <input *ngIf="upload" (change)="onChange($event)" type="file" required="required">
+          <button mat-raised-button *ngIf="!upload" color="primary" (click)="onClick()" >Update</button>
+          <button mat-raised-button *ngIf="upload" color="primary" type="submit" >Upload Image</button>
+          </form>
+          <button mat-button (click)="onRemove()">Remove</button>
+        </section>
+
+      </section>
+      <section class="col-12 col-lg-8 mt-5 d-flex align-items-center">
+
+        <section class="row w-100">
+          <form class="col-12 col-md-12 col-lg-6 text-center w-100 mb-5" [formGroup]="detailsUpdateForm" (ngSubmit)="onSubmit()">
+
+            <!--name-->
+            <div class="form-group">
+              <mat-form-field appearance="outline" class="w-75 w form-group">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name" >
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint>Enter your Name</mat-hint>
+                <mat-error *ngIf="!detailsUpdateForm.get('name').valid">
+                  Please Enter Your Name
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!--email-->
+            <div class="form-group">
+              <mat-form-field appearance="outline" class="w-75 form-group">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>Enter your email</mat-hint>
+                <mat-error *ngIf="!detailsUpdateForm.get('email').valid">
+                  Please Enter valid Email Address
+                </mat-error>
+                <!--<mat-error *ngIf="!signUpForm.get('email').errors.email">-->
+                <!--Email is <strong>Required</strong>-->
+                <!--</mat-error>-->
+              </mat-form-field>
+            </div>
+            <!--submit button-->
+            <button mat-raised-button color="accent" type="submit" [disabled]="detailsUpdateForm.invalid" >Update Details</button>
+          </form>
+
+          <form class="col-12 col-md-12 col-lg-6 text-center w-100" [formGroup]="passwordUpdateForm" (ngSubmit)="onPasswordChange()">
+
+            <!--name-->
+            <div class="form-group">
+              <div class="form-field">
+                <mat-form-field appearance="outline" class="w-75 form-group">
+                  <mat-label>Enter your current password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="c_password">
+                  <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <!--repeat password-->
+            <div class="form-group">
+              <div class="form-field">
+                <mat-form-field appearance="outline" class="w-75 form-group">
+                  <mat-label>Enter your new password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="n_password">
+                  <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--submit button-->
+            <button mat-raised-button color="warn" type="submit" [disabled]="passwordUpdateForm.invalid" >Update Passwords</button>
+          </form>
+
+        </section>
+
+
+    </section>
+
+  </section>
+</section>
+

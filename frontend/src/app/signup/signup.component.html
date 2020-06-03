@@ -1,0 +1,64 @@
+<section class="container-fluid">
+  <section class="row">
+
+
+    <section class="container jumbotron  mb-0" >
+      <h3 class="text-center mb-lg-5 display-4">Come ! Join with Us</h3>
+      <form class="text-center" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+        <!--name-->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-75 w form-group">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Your name" formControlName="name" >
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-hint>Enter your Name</mat-hint>
+            <mat-error *ngIf="!signUpForm.get('name').valid">
+              Please Enter Your Name
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <!--email-->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-75 form-group">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Your email" formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>Enter your email</mat-hint>
+            <mat-error *ngIf="!signUpForm.get('email').valid">
+              Please Enter valid Email Address
+            </mat-error>
+            <!--<mat-error *ngIf="!signUpForm.get('email').errors.email">-->
+              <!--Email is <strong>Required</strong>-->
+            <!--</mat-error>-->
+          </mat-form-field>
+        </div>
+
+        <!--password-->
+        <div class="form-field">
+          <mat-form-field appearance="outline" class="w-75 form-group">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+
+
+        <!--submit button-->
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid" >Submit</button>
+      </form>
+
+    </section>
+
+
+  </section>
+</section>
+
+

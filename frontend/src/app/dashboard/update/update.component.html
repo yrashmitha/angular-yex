@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Update {{data.paper.title}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="form-group">
+    <mat-form-field appearance="outline" class="w-100 w form-group">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" name="title" [(ngModel)]="title" required>
+      <mat-icon matSuffix>title</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <!--paper description-->
+  <div class="form-group">
+    <mat-form-field appearance="outline" class="w-100 form-group">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description"  name="description" [(ngModel)]="description">
+      <mat-icon matSuffix>description</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="legacy" class="example-chip-list w-100 form-group">
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                  [removable]="removable" (removed)="remove(tag)">
+          {{tag.tag}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Tags" required="required" name="tags"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-icon matSuffix>offline_bolt</mat-icon>
+
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary"  [mat-dialog-close]="true" cdkFocusInitial (click)="onUpdate(data.paper)">Update</button>
+  <button mat-raised-button  color="warn" [mat-dialog-close]="true" cdkFocusInitial (click)="onDelete(data.paper)">Delete</button>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

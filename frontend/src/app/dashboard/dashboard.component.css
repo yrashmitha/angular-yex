@@ -1,0 +1,17 @@
+#dash{
+  /*background-image: url("~src/assets/images/dash-back.jpg");*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
+  background-color: #c5e3f6;
+  opacity: 0.6;
+}
+#welcome{
+  /*background-image: url("~src/assets/images/welcome.jpg");*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  /*opacity: 0.6;*/
+}

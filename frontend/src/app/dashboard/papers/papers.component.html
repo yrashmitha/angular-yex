@@ -1,0 +1,74 @@
+<section class="container jumbotron min-vh-100">
+  <section class="row">
+    <section class="col-12">
+      <h3 class="text-center mb-lg-5 display-4">Your Papers</h3>
+    </section>
+    <section *ngFor="let paper of papers" class="col-12 col-md-6 col-lg-4 mb-3">
+      <mat-card  class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{paper.title}}</mat-card-title>
+          <mat-card-subtitle>{{paper.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <img *ngIf="paper.extension!=='pdf'" mat-card-image [src]="staticImagePath+paper.path"  alt="Photo of a Shiba Inu">
+        <img *ngIf="paper.extension=='pdf'" mat-card-image src="/assets/images/image.png"  alt="Photo of a Shiba Inu">
+        <!--<mat-card-content>-->
+          <!--<p>-->
+            <!--The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+            <!--A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+            <!--bred for hunting.-->
+          <!--</p>-->
+        <!--</mat-card-content>-->
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="openDialogUpdate(paper)" class="mr-2">Update</button>
+          <button *ngIf="paper.status==1" mat-raised-button  class="mr-2 my-offline" (click)="turnOffline(paper.id)" >Turn Offline</button>
+          <button *ngIf="paper.status==0" mat-raised-button (click)="turnOnline(paper.id)" class="mr-2 my-online" >Turn Online</button>
+
+          <button mat-raised-button color="warn" (click)="onDelete(paper.id)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </section>
+
+
+
+
+
+    <!--<mat-accordion>-->
+      <!--<mat-expansion-panel *ngFor="let paper of papers" class="mb-2">-->
+        <!--<mat-expansion-panel-header>-->
+          <!--<mat-panel-title>-->
+            <!--{{paper.title}}-->
+          <!--</mat-panel-title>-->
+          <!--<mat-panel-description>-->
+            <!--Type your name and age-->
+          <!--</mat-panel-description>-->
+        <!--</mat-expansion-panel-header>-->
+
+        <!--<mat-form-field>-->
+          <!--<mat-label>First name</mat-label>-->
+          <!--<input matInput>-->
+        <!--</mat-form-field>-->
+
+        <!--<mat-form-field>-->
+          <!--<mat-label>Age</mat-label>-->
+          <!--<input matInput type="number" min="1">-->
+        <!--</mat-form-field>-->
+        <!--<mat-action-row>-->
+          <!--<button mat-raised-button>Button</button>-->
+        <!--</mat-action-row>-->
+      <!--</mat-expansion-panel>-->
+
+
+    <!--</mat-accordion>-->
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+</section>

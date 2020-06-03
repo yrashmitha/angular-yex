@@ -1,0 +1,64 @@
+<section class="container-fluid">
+  <section class="row">
+    <section class="container jumbotron  mb-0" >
+      <h3 class="text-center mb-lg-5 display-4 mt-5">Upload a Paper</h3>
+      <form class="text-center" #uploadForm="ngForm" (ngSubmit)="onSubmit()">
+        <!--dropzone-->
+
+        <div class="form-group m-auto">
+          <ngx-dropzone class="mb-lg-4 w-75 m-auto" [expandable]="true" (change)="onSelect($event)">
+            <ngx-dropzone-label>Drop your items here!</ngx-dropzone-label>
+            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-preview>
+          </ngx-dropzone>
+        </div>
+
+        <!--paper title-->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-75 w form-group">
+            <mat-label>Paper title</mat-label>
+            <input matInput placeholder="Cs 205 End Examination 2017" [(ngModel)]="title" name="title" required>
+            <mat-icon matSuffix>title</mat-icon>
+            <mat-hint>Enter your paper title</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!--paper description-->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-75 form-group">
+            <mat-label>Paper description</mat-label>
+            <input matInput placeholder="Images are not quality. But it covers you!" [(ngModel)]="description" name="description">
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-hint>Enter your paper description here.</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!--paper tags-->
+        <div class="form-group">
+          <mat-form-field appearance="legacy" class="example-chip-list w-75 form-group">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                        [removable]="removable" (removed)="remove(tag)">
+                {{tag.tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Enter possible tags for your paper" required="required" name="tags"
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-icon matSuffix>offline_bolt</mat-icon>
+
+          </mat-form-field>
+        </div>
+
+        <!--submit button-->
+        <button matTooltip="Upload paper" mat-raised-button color="primary" type="submit" [disabled]="uploadForm.invalid">Submit</button>
+      </form>
+    </section>
+  </section>
+</section>
+
+
